@@ -4,43 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SVNBIRDS EAST AFRICAN TOUR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('YOUR_IMAGE_LINK_HERE');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('Assets/SB-BG.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: white;
-            font-family: 'Helvetica', sans-serif;
+            /* Applying Montserrat globally */
+            font-family: 'Montserrat', sans-serif;
         }
         .form-overlay { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); }
+        .main-logo { width: 100%; max-width: 300px; height: auto; }
+        .footer-logo { width: 80px; height: auto; opacity: 0.8; }
+        
+        /* Custom styling for that loud/bold look */
+        .heavy-font { font-weight: 900; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
 
-    <div id="main-content" class="max-w-md w-full">
-        <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-2 italic">SVNBIRDS</h1>
-        <h2 class="text-xl md:text-2xl font-bold tracking-widest uppercase mb-8 text-yellow-500">East African Tour</h2>
+    <div id="main-content" class="max-w-md w-full flex flex-col items-center">
         
-        <p class="mb-8 text-lg font-light">Soulja • Montiyago • & More<br>Rwanda | Uganda | Kenya</p>
+        <img src="Assets/logo.png" alt="SVNBIRDS" class="main-logo mb-4">
+        
+        <h2 class="text-xl md:text-2xl font-bold tracking-[0.3em] uppercase mb-8 text-yellow-500">East African Tour</h2>
+        
+        <p class="mb-8 text-lg font-medium tracking-wide">SOULJA • MONTIYAGO • & MORE<br>RWANDA | UGANDA | KENYA</p>
 
-        <form id="tourForm" class="form-overlay p-8 rounded-2xl space-y-4 border border-white/20">
-            <input type="text" name="name" placeholder="FULL NAME" required class="w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-xl uppercase">
+        <form id="tourForm" class="form-overlay p-8 rounded-2xl space-y-4 border border-white/10 w-full">
+            <input type="text" name="name" placeholder="FULL NAME" required class="w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-sm font-bold uppercase tracking-widest">
             
-            <input type="email" name="email" placeholder="EMAIL ADDRESS" required class="w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-xl uppercase">
+            <input type="email" name="email" placeholder="EMAIL ADDRESS" required class="w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-sm font-bold uppercase tracking-widest">
 
             <div class="flex gap-2">
-                <select name="countryCode" class="bg-black border-b border-white/50 outline-none p-4 text-yellow-500 font-bold">
+                <select name="countryCode" class="bg-black border-b border-white/50 outline-none p-4 text-yellow-500 font-black text-sm">
                     <option value="+254">KE (+254)</option>
                     <option value="+256">UG (+256)</option>
                     <option value="+250">RW (+250)</option>
-                    <option value="+">Other</option>
+                    <option value="+">OTHER</option>
                 </select>
-                <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="flex-1 p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-xl uppercase">
+                <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="flex-1 p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-sm font-bold uppercase tracking-widest">
             </div>
 
-            <select id="citySelect" name="city" required class="w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-xl uppercase">
+            <select id="citySelect" name="city" required class="w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-sm font-bold uppercase tracking-widest">
                 <option value="" disabled selected class="text-black">CHOOSE YOUR CITY</option>
                 <option value="Kigali" class="text-black">KIGALI - RWANDA</option>
                 <option value="Kampala" class="text-black">KAMPALA - UGANDA</option>
@@ -48,19 +57,22 @@
                 <option value="Other" class="text-black">OTHER CITY</option>
             </select>
 
-            <input type="text" id="otherCityInput" name="otherCity" placeholder="SPECIFY CITY" class="hidden w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-xl uppercase">
+            <input type="text" id="otherCityInput" name="otherCity" placeholder="SPECIFY CITY" class="hidden w-full p-4 bg-transparent border-b border-white/50 focus:border-yellow-500 outline-none text-sm font-bold uppercase tracking-widest">
 
-            <button type="submit" id="submitBtn" class="w-full bg-yellow-500 text-black font-black py-5 text-2xl tracking-tighter hover:bg-white transition duration-300 rounded-lg">JOIN THE TOUR</button>
+            <button type="submit" id="submitBtn" class="w-full bg-yellow-500 text-black font-black py-5 text-xl tracking-tighter hover:bg-white transition duration-300 rounded-lg mt-4 uppercase">JOIN THE TOUR</button>
         </form>
 
-        <div id="successMsg" class="hidden form-overlay p-8 rounded-2xl border border-yellow-500">
-            <h3 class="text-3xl font-bold mb-4">YOU'RE ON THE LIST.</h3>
-            <p class="mb-6">We'll text you as soon as tickets drop.</p>
-            <a href="https://wa.me/?text=Just%20signed%20up%20for%20the%20SVNBIRDS%20East%20African%20Tour!%20🇰🇪🇺🇬🇷🇼%20Join%20me:%20BirdsOnTour.com" class="inline-block bg-green-500 text-white px-6 py-3 rounded-full font-bold">TELL YOUR CITY</a>
+        <div id="successMsg" class="hidden form-overlay p-8 rounded-2xl border border-yellow-500 w-full">
+            <h3 class="text-3xl font-black mb-4 italic uppercase tracking-tighter">YOU'RE ON THE LIST.</h3>
+            <p class="mb-6 font-medium opacity-80 uppercase text-xs tracking-widest">We'll text you as soon as tickets drop.</p>
+            <a href="https://wa.me/?text=Just%20signed%20up%20for%20the%20SVNBIRDS%20East%20African%20Tour!%20🇰🇪🇺🇬🇷🇼%20Join%20me%20here:%20svnbirds.github.io/tour" class="inline-block bg-green-600 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-xs">TELL YOUR CITY</a>
         </div>
 
-        <div class="mt-12 text-xs opacity-50 tracking-widest">
-            CONTACT: BOOKING@SVNBIRDS.COM
+        <div class="mt-16 flex flex-col items-center space-y-4">
+            <img src="Assets/logo2.png" alt="SVNBIRDS Logo" class="footer-logo">
+            <div class="text-[9px] opacity-50 tracking-[0.4em] font-black uppercase">
+                CONTACT: BOOKING@SVNBIRDS.COM
+            </div>
         </div>
     </div>
 
@@ -68,9 +80,8 @@
         const form = document.getElementById('tourForm');
         const citySelect = document.getElementById('citySelect');
         const otherCityInput = document.getElementById('otherCityInput');
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyMqIBhusyUHZB841dicYsfLb_YSNlvP3tWP2hcyDJR6c2AWW7iVCS490xuudDGvgM_/exec'; // PASTE YOUR URL HERE
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyMqIBhusyUHZB841dicYsfLb_YSNlvP3tWP2hcyDJR6c2AWW7iVCS490xuudDGvgM_/exec'; 
 
-        // Show/Hide Other City Logic
         citySelect.addEventListener('change', (e) => {
             if (e.target.value === 'Other') {
                 otherCityInput.classList.remove('hidden');
@@ -81,17 +92,22 @@
             }
         });
 
-        // Form Submission Logic
         form.addEventListener('submit', e => {
             e.preventDefault();
-            document.getElementById('submitBtn').innerText = "SIGNING UP...";
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "SENDING...";
+            btn.disabled = true;
             
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
                     document.getElementById('tourForm').classList.add('hidden');
                     document.getElementById('successMsg').classList.remove('hidden');
                 })
-                .catch(error => alert('Something went wrong. Please try again!'));
+                .catch(error => {
+                    alert('Check your connection and try again!');
+                    btn.innerText = "JOIN THE TOUR";
+                    btn.disabled = false;
+                });
         });
     </script>
 </body>
