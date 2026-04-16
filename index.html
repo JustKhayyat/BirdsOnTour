@@ -8,8 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            /* Lowering the intensity of the gradient to let the BG shine */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('Assets/SB-BG.png');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('Assets/SB-BG.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -18,35 +17,41 @@
             overflow-x: hidden;
         }
         .form-overlay { 
-            background: rgba(255, 255, 255, 0.03); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.04); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
         }
         .input-style {
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 0.75rem 1rem; /* Slightly thinner padding */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.85rem 1rem;
             width: 100%;
-            font-size: 0.75rem; /* Smaller text for a cleaner look */
-            font-weight: 500;
+            font-size: 0.75rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             outline: none;
             transition: all 0.3s ease;
-            border-radius: 6px;
+            border-radius: 8px;
+            color: white;
+        }
+        /* Desktop fix for dropdown visibility */
+        .input-style option {
+            background-color: #1a1a1a;
+            color: white;
         }
         .input-style:focus {
             border-color: #eab308;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
         }
         select.input-style {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 0.75rem center;
+            background-position: right 0.85rem center;
             background-size: 0.8rem;
         }
-        .main-logo { width: 180px; height: auto; margin-top: 10vh; } /* Pushed down 10% from top */
+        .main-logo { width: 170px; height: auto; margin-top: 8vh; }
         .footer-logo { width: 50px; height: auto; opacity: 0.5; }
     </style>
 </head>
@@ -54,50 +59,50 @@
 
     <div id="main-content" class="max-w-[320px] w-full flex flex-col items-center">
         
-        <img src="Assets/logo.png" alt="SVNBIRDS" class="main-logo mb-8">
+        <img src="Assets/logo.png" alt="SVNBIRDS" class="main-logo mb-6">
         
         <h2 class="text-sm font-black tracking-[0.5em] uppercase mb-4 text-yellow-500">East African Tour</h2>
         
-        <p class="mb-10 text-[10px] font-medium tracking-[0.3em] opacity-80 leading-loose">
+        <p class="mb-10 text-[10px] font-bold tracking-[0.3em] leading-loose">
             SOULJA • MONTIYAGO • & MORE<br>
-            <span class="opacity-40 font-light">RWANDA | UGANDA | KENYA</span>
+            <span class="opacity-80 font-medium">RWANDA | UGANDA | KENYA</span>
         </p>
 
-        <form id="tourForm" class="form-overlay p-6 rounded-2xl space-y-3 border border-white/5 w-full shadow-xl">
-            <input type="text" name="name" placeholder="Name" required class="input-style">
+        <form id="tourForm" class="form-overlay p-6 rounded-2xl space-y-3 border border-white/10 w-full shadow-2xl">
+            <input type="text" name="name" placeholder="Full Name" required class="input-style">
             
-            <input type="email" name="email" placeholder="Email" required class="input-style">
+            <input type="email" name="email" placeholder="Email Address" required class="input-style">
 
             <div class="grid grid-cols-3 gap-2">
-                <select name="countryCode" class="input-style col-span-1 text-[9px] px-1">
-                    <option value="+254">KE</option>
-                    <option value="+256">UG</option>
-                    <option value="+250">RW</option>
+                <select name="countryCode" class="input-style col-span-1 text-[10px] px-1 font-bold">
+                    <option value="+254">+254</option>
+                    <option value="+256">+256</option>
+                    <option value="+250">+250</option>
                     <option value="+">EXT</option>
                 </select>
                 <input type="tel" name="phone" placeholder="Phone" required class="input-style col-span-2">
             </div>
 
             <select id="citySelect" name="city" required class="input-style">
-                <option value="" disabled selected>Select City</option>
-                <option value="Kigali" class="text-black">Kigali</option>
-                <option value="Kampala" class="text-black">Kampala</option>
-                <option value="Nairobi" class="text-black">Nairobi</option>
-                <option value="Other" class="text-black">Other City</option>
+                <option value="" disabled selected>Select Your City</option>
+                <option value="Kigali">Kigali</option>
+                <option value="Kampala">Kampala</option>
+                <option value="Nairobi">Nairobi</option>
+                <option value="Other">Other City</option>
             </select>
 
-            <input type="text" id="otherCityInput" name="otherCity" placeholder="Where?" class="hidden input-style">
+            <input type="text" id="otherCityInput" name="otherCity" placeholder="Specify City" class="hidden input-style">
 
-            <button type="submit" id="submitBtn" class="w-full bg-yellow-500 text-black font-black py-4 text-sm tracking-widest hover:bg-white transition-all duration-300 rounded-lg mt-4 uppercase active:scale-95">
+            <button type="submit" id="submitBtn" class="w-full bg-yellow-500 text-black font-black py-4 text-sm tracking-widest hover:bg-white transition-all duration-300 rounded-lg mt-4 uppercase active:scale-95 shadow-lg">
                 Keep Me Posted
             </button>
         </form>
 
-        <div id="successMsg" class="hidden form-overlay p-8 rounded-2xl border border-yellow-500/30 w-full">
-            <h3 class="text-xl font-black mb-2 italic tracking-tighter uppercase">Confirmed.</h3>
-            <p class="mb-8 font-medium opacity-60 text-[9px] tracking-[0.2em] uppercase">Check your inbox soon.</p>
+        <div id="successMsg" class="hidden form-overlay p-8 rounded-2xl border border-yellow-500/40 w-full">
+            <h3 class="text-xl font-black mb-2 italic tracking-tighter uppercase">List Confirmed.</h3>
+            <p class="mb-8 font-medium opacity-70 text-[9px] tracking-[0.2em] uppercase">Tickets dropping soon.</p>
             <a href="https://wa.me/?text=Just%20signed%20up%20for%20the%20SVNBIRDS%20East%20African%20Tour!%20🇰🇪🇺🇬🇷🇼%20Join%20me%20here:%20https://justkhayyat.github.io/BirdsOnTour/" 
-               class="inline-block bg-green-600/80 text-white px-6 py-3 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-green-600 transition-colors">
+               class="inline-block bg-green-600 text-white px-8 py-3 rounded-full font-black uppercase tracking-widest text-[9px] hover:bg-green-500 transition-colors">
                 Tell The City
             </a>
         </div>
